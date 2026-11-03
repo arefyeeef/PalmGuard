@@ -1,0 +1,31 @@
+name: Build PalmGuard
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Theos
+        uses: Randomblock1/theos-action@v1
+        with:
+          theos-dir: theos
+          theos-src: https://github.com/theos/theos
+          theos-sdks: https://github.com/theos/sdks
+          theos-sdks-branch: master
+
+      - name: Build rootless package
+        run: make clean package FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
+
+      - name: Upload Debian package
+        uses: actions/upload-artifact@v4
+        with:
+          name: PalmGuard-rootless-deb
+          path: packages/*.deb
+          if-no-files-found: error
