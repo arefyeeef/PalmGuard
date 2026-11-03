@@ -1,8 +1,8 @@
 Package: com.palmguard.tweak
 Name: PalmGuard
-Version: 0.1.1
+Version: 0.2.0
 Architecture: iphoneos-arm64
-Description: Experimental touch-radius diagnostics and optional palm filtering for passive capacitive styluses.
+Description: Experimental window-level touch-radius filtering for passive capacitive styluses.
 Maintainer: PalmGuard Project
 Author: PalmGuard Project
 Section: Tweaks
